@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+# Copyright (C) 2018 Lubuntu Team
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+import git
+import paramiko
+import tempfile
+from phabricator import Phabricator
+
+RELEASE = ""
+PASTRELEASE = ""
+SERVERHOST = ""
+SERVERUSER = ""
+REPOLOCATION = ""
+REPOLISTPATH = ""
+CLONEBASE = ""
+phab = Phabricator(host="" + "/api/", token="")
+
+with tempfile.TemporaryDirectory() as workingdir:
+    for line in open(REPOLISTPATH):
+        repository = line.strip("\n")
+        print("Acting on " + repository + "...")
+
+        # Clone the repository and push the new branch
+        git.Git(workingdir).clone(CLONEBASE + repository + ".git")
+        gitrepo = git.Repo(workingdir + "/" + repository)
+        gitrepo.git.checkout("ubuntu/" + PASTRELEASE)
+        try:
+            gitrepo.git.branch("ubuntu/" + RELEASE)
+        except:
+            gitrepo.git.checkout("ubuntu/" + RELEASE)
+        gitrepo.git.push("--all")
+        print("Cloned " + repository + ".")
+
+        # Change the default branch in Phab and kick off an import
+        rename_result = phab.diffusion.repository.edit(transactions=[{"type": "defaultBranch", "value": "ubuntu/" + RELEASE}], objectIdentifier=phab.diffusion.repository.search(queryKey="active", constraints={"shortNames": [repository]})["data"][0]["phid"])
+        repo_id = rename_result["object"]["id"]
+        phab.diffusion.looksoon(repositories=[repository])
+        print("Changed the default branch of " + repository + " to ubuntu/" + RELEASE + " in Phab.")
+
+        # Change the HEAD file on the remote
+        serverconn = paramiko.SSHClient()
+        serverconn.load_system_host_keys()
+        serverconn.connect(SERVERHOST, username=SERVERUSER)
+        command = "echo 'ref: refs/heads/ubuntu/{branch}' | sudo tee {repopath}{repoid}/HEAD".format(branch=RELEASE, repopath=REPOLOCATION, repoid=repo_id)
+        (stdin_, stdout_, stderr_) = serverconn.exec_command(command)
+        serverconn.close()
+        print("Changed the HEAD of " + repository + " to ubuntu/" + RELEASE + " in Phab.")

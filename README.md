@@ -17,11 +17,11 @@ After ISOs have been released:
 
  1. Publish the blog post and the downloads/homepage drafts.
  1. Post on social media:
-   1. [Twitter](https://twitter.com/LubuntuOfficial) or [Mastodon](https://mastodon.technology/@lubuntu) (publishing to one published to the other).
-   1. [r/Lubuntu](https://www.reddit.com/r/Lubuntu) and [r/Ubuntu](https://www.reddit.com/r/Ubuntu).
-   1. [Facebook page](https://www.facebook.com/Lubuntu.Official.Page/) and [Facebook group](https://www.facebook.com/groups/lubuntu.official/).
-   1. IRC topics for #lubuntu, #lubuntu-devel, and #lubuntu-offtopic on freenode.
-   1. Announce on the [lubuntu-users](https://lists.ubuntu.com/mailman/listinfo/lubuntu-users) and [lubuntu-devel](https://lists.ubuntu.com/mailman/listinfo/lubuntu-devel) mailing lists.
+    1. [Twitter](https://twitter.com/LubuntuOfficial) or [Mastodon](https://mastodon.technology/@lubuntu) (publishing to one published to the other).
+    1. [r/Lubuntu](https://www.reddit.com/r/Lubuntu) and [r/Ubuntu](https://www.reddit.com/r/Ubuntu).
+    1. [Facebook page](https://www.facebook.com/Lubuntu.Official.Page/) and [Facebook group](https://www.facebook.com/groups/lubuntu.official/).
+    1. IRC topics for #lubuntu, #lubuntu-devel, and #lubuntu-offtopic on freenode.
+    1. Announce on the [lubuntu-users](https://lists.ubuntu.com/mailman/listinfo/lubuntu-users) and [lubuntu-devel](https://lists.ubuntu.com/mailman/listinfo/lubuntu-devel) mailing lists.
  1. Scan social media and see if anyone is pointing out any reproducible bugs that we can file.
 
 After the codename is announced and `base-files` is uploaded:
@@ -31,13 +31,13 @@ After the codename is announced and `base-files` is uploaded:
  1. Make sure `repo-list` is up-to-date and run `setup-phab` in this repo. The production values can be found in the internal setup document.
  1. Someone with access to GitHub should update the default branches for the mirrored repositories.
  1. Update the CI to enable builds for the new release:
-   1. In [ci.conf](https://phab.lubuntu.me/source/ci-metadata/browse/master/ci.conf):
-     1. Add the new codename to the `releases` list.
-     1. Change `default_branch` to the branch you just created above.
-     1. Evaluate overrides for the aforementioned variables and season to taste.
-   1. Run [jobgenerator](https://ci.lubuntu.me/job/jobgenerator/) and then look over the builds triggered. Did you miss a step?
-   1. Add the new release to [the Britney job](https://ci.lubuntu.me/view/mgmt/job/Britney/configure) so builds can migrate.
+    1. In [ci.conf](https://phab.lubuntu.me/source/ci-metadata/browse/master/ci.conf):
+       1. Add the new codename to the `releases` list.
+       1. Change `default_branch` to the branch you just created above.
+       1. Evaluate overrides for the aforementioned variables and season to taste.
+    1. Run [jobgenerator](https://ci.lubuntu.me/job/jobgenerator/) and then look over the builds triggered. Did you miss a step?
+    1. Add the new release to [the Britney job](https://ci.lubuntu.me/view/mgmt/job/Britney/configure) so builds can migrate.
  1. If `lintian` and `devscripts` have not been updated, cherry-pick the `lintian` patch adding the new release as known if there is one, and no-change rebuild `devscripts`.
-   1. Lintian needs a patch because all of the Ubuntu releases are hardcoded in `vendors/ubuntu/main/data/changes-file/known-dists`.
-   1. `devscripts` needs a no-change rebuild because it gets the value grabbed by `dch -r` on build time. This is in line 47 of `scripts/Makefile`.
+    1. Lintian needs a patch because all of the Ubuntu releases are hardcoded in `vendors/ubuntu/main/data/changes-file/known-dists`.
+    1. `devscripts` needs a no-change rebuild because it gets the value grabbed by `dch -r` on build time. This is in line 47 of `scripts/Makefile`.
  1. Evaluate our packages. What needs to be updated to the latest upstream release? What did we carry over to this release?

@@ -11,7 +11,11 @@ A week before release day:
  1. Update the downloads page and the homepage for the new release in a draft, so they can be published on release day.
  1. Do one final check of the [testing checklist](https://phab.lubuntu.me/w/release-team/testing-checklist/) and send out a call for testers.
  1. Start drafting [a blog post](https://phab.lubuntu.me/source/blog/) for the release.
- 1. Gather known bugs from Launchpad and [the ISO QA tracker](http://iso.qa.ubuntu.com/) (possibly automate this) to put on the blog post.
+ 1. Gather known bugs (possibly automate this) to put on the blog post from:
+    1. [bugs associated with the Lubuntu Packages Team](https://bugs.launchpad.net/~lubuntu-packaging);
+    1. packages in the Lubuntu packageset which the Lubuntu Packages Team might not have been subscribed to, especially Lubuntu specific ones like `lubuntu-meta` and `lubuntu-artwork`;
+    1. known issues from previous release notes; and
+    1. [open defects report on the ISO QA tracker](http://iso.qa.ubuntu.com/qatracker/reports/defects/opened) for both the upcoming release as well as previous releases to ensure nothing has been missed. 
 
 After ISOs have been released:
 

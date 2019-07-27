@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (C) 2018 Lubuntu Team
+# Copyright (C) 2018-2019 Lubuntu Team
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,15 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import git
-import paramiko
 import tempfile
 from phabricator import Phabricator
 
 RELEASE = ""
 PASTRELEASE = ""
-SERVERHOST = ""
-SERVERUSER = ""
-REPOLOCATION = ""
 REPOLISTPATH = ""
 CLONEBASE = ""
 phab = Phabricator(host="" + "/api/", token="")
@@ -50,12 +46,3 @@ with tempfile.TemporaryDirectory() as workingdir:
         repo_id = rename_result["object"]["id"]
         phab.diffusion.looksoon(repositories=[repository])
         print("Changed the default branch of " + repository + " to ubuntu/" + RELEASE + " in Phab.")
-
-        # Change the HEAD file on the remote
-        serverconn = paramiko.SSHClient()
-        serverconn.load_system_host_keys()
-        serverconn.connect(SERVERHOST, username=SERVERUSER)
-        command = "echo 'ref: refs/heads/ubuntu/{branch}' | sudo tee {repopath}{repoid}/HEAD".format(branch=RELEASE, repopath=REPOLOCATION, repoid=repo_id)
-        (stdin_, stdout_, stderr_) = serverconn.exec_command(command)
-        serverconn.close()
-        print("Changed the HEAD of " + repository + " to ubuntu/" + RELEASE + " in Phab.")

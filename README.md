@@ -16,6 +16,7 @@ A week before release day:
     1. packages in the Lubuntu packageset which the Lubuntu Packages Team might not have been subscribed to, especially Lubuntu specific ones like `lubuntu-meta` and `lubuntu-artwork`;
     1. known issues from previous release notes; and
     1. [open defects report on the ISO QA tracker](http://iso.qa.ubuntu.com/qatracker/reports/defects/opened) for both the upcoming release as well as previous releases to ensure nothing has been missed. 
+ 1. Make sure that the link is correct on the Ubuntu release notes for where our announcement will be.
 
 After ISOs have been released:
 
@@ -34,6 +35,7 @@ After ISOs have been released:
     1. Announce on the [lubuntu-users](https://lists.ubuntu.com/mailman/listinfo/lubuntu-users) and [lubuntu-devel](https://lists.ubuntu.com/mailman/listinfo/lubuntu-devel) mailing lists.
  1. Scan social media and see if anyone is pointing out any reproducible bugs that we can file.
  1. Edit [the Phab sidebar](https://phab.lubuntu.me/home/menu/configure/global/).
+ 1. Update [the Testing wiki](https://phab.lubuntu.me/w/testing/) with the new release.
 
 After the codename is announced and `base-files` is uploaded:
 

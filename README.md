@@ -33,6 +33,7 @@ After ISOs have been released:
     1. IRC topics for #lubuntu, #lubuntu-devel, and #lubuntu-offtopic on freenode.
     1. Announce on the [lubuntu-users](https://lists.ubuntu.com/mailman/listinfo/lubuntu-users) and [lubuntu-devel](https://lists.ubuntu.com/mailman/listinfo/lubuntu-devel) mailing lists.
  1. Scan social media and see if anyone is pointing out any reproducible bugs that we can file.
+ 1. Edit [the Phab sidebar](https://phab.lubuntu.me/home/menu/configure/global/).
 
 After the codename is announced and `base-files` is uploaded:
 

@@ -36,7 +36,7 @@ After the codename is announced and `base-files` is uploaded:
  1. Someone with access to GitHub should update the default branches for the mirrored repositories.
  1. Update the CI to enable builds for the new release:
     1. In [ci.conf](https://phab.lubuntu.me/source/ci-metadata/browse/master/ci.conf):
-       1. Add the new codename to the `releases` list.
+       1. Add the new codename to the `releases` list, and remove old releases if necessary.
        1. Change `default_branch` to the branch you just created above.
        1. Evaluate overrides for the aforementioned variables and season to taste.
     1. Run [jobgenerator](https://ci.lubuntu.me/job/jobgenerator/) and then look over the builds triggered. Did you miss a step?

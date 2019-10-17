@@ -19,6 +19,12 @@ A week before release day:
 
 After ISOs have been released:
 
+ 1. Update the Lubuntu Manual in production (via SSH):
+    1. Merge `stable` -> `master`.
+    1. Make sure version strings and hashes are updated in the `master` branch.
+    1. Rename `stable` to its release number.
+    1. Push `master` to `stable` (and to `lts` if applicable; do NOT merge).
+    1. Change the version strings in `master` to reflect the new development release.
  1. Publish the blog post and the downloads/homepage drafts.
  1. Post on social media:
     1. [Twitter](https://twitter.com/LubuntuOfficial) or [Mastodon](https://mastodon.technology/@lubuntu) (publishing to one published to the other).

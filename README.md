@@ -48,6 +48,7 @@ After the codename is announced and `base-files` is uploaded:
        1. Evaluate overrides for the aforementioned variables and season to taste.
     1. Run [jobgenerator](https://ci.lubuntu.me/job/jobgenerator/) and then look over the builds triggered. Did you miss a step?
     1. Add the new release to [the Britney job](https://ci.lubuntu.me/view/mgmt/job/Britney/configure) so builds can migrate.
+    1. SSH into the Jenkins container, `su` to the `jenkins` user, go to `~/jobs` and remove old jobs (e.g. from an old release), and in the Jenkins settings, `Reload Configuration from Disk`.
  1. If `lintian` and `devscripts` have not been updated, cherry-pick the `lintian` patch adding the new release as known if there is one, and no-change rebuild `devscripts`.
     1. Lintian needs a patch because all of the Ubuntu releases are hardcoded in `vendors/ubuntu/main/data/changes-file/known-dists`.
     1. `devscripts` needs a no-change rebuild because it gets the value grabbed by `dch -r` on build time. This is in line 47 of `scripts/Makefile`.

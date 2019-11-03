@@ -34,11 +34,16 @@ After ISOs have been released:
     1. IRC topics for #lubuntu, #lubuntu-devel, and #lubuntu-offtopic on freenode.
     1. Announce on the [lubuntu-users](https://lists.ubuntu.com/mailman/listinfo/lubuntu-users) and [lubuntu-devel](https://lists.ubuntu.com/mailman/listinfo/lubuntu-devel) mailing lists.
  1. Scan social media and see if anyone is pointing out any reproducible bugs that we can file.
- 1. Edit [the Phab sidebar](https://phab.lubuntu.me/home/menu/configure/global/).
- 1. Update [the Testing wiki](https://phab.lubuntu.me/w/testing/) with the new release.
 
 After the codename is announced and `base-files` is uploaded:
 
+ 1. Update [the Testing wiki](https://phab.lubuntu.me/w/testing/).
+ 1. Edit [the Phab sidebar](https://phab.lubuntu.me/home/menu/configure/global/).
+    1. Ensure the new release's task is resolved.
+    1. Remove the new release from testing. 
+    1. Add a new task for SRUs for the new release.
+    1. Add a new task with a countdown in the description for the upcoming release.
+    1. Be mindful of upcoming point releases.
  1. File a task about a new wallpaper and slideshow for the upcoming release.
  1. Change `update.cfg` in lubuntu-meta and the branding as well as the desktop file in `calamares-settings-ubuntu`.
  1. Update the default branch for rSEED both on Phabricator and upstream in Launchpad.

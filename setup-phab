@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (C) 2018-2019 Lubuntu Team
+# Copyright (C) 2018-2020 Lubuntu Team
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import tempfile
 from phabricator import Phabricator
 
 RELEASE = ""
-PASTRELEASE = ""
 REPOLISTPATH = ""
 CLONEBASE = ""
 phab = Phabricator(host="" + "/api/", token="")
@@ -33,7 +32,7 @@ with tempfile.TemporaryDirectory() as workingdir:
         # Clone the repository and push the new branch
         git.Git(workingdir).clone(CLONEBASE + repository + ".git")
         gitrepo = git.Repo(workingdir + "/" + repository)
-        gitrepo.git.checkout("ubuntu/" + PASTRELEASE)
+        gitrepo.git.checkout("ci/stable")
         try:
             gitrepo.git.branch("ubuntu/" + RELEASE)
         except:

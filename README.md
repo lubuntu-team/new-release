@@ -45,7 +45,7 @@ After the codename is announced and `base-files` is uploaded:
     1. Add a new task with a countdown in the description for the upcoming release.
     1. Be mindful of upcoming point releases.
  1. File a task about a new wallpaper and slideshow for the upcoming release.
- 1. Change `update.cfg` in lubuntu-meta and the branding as well as the desktop file in `calamares-settings-ubuntu`.
+ 1. Change `update.cfg` in rMETA and the branding as well as the desktop file in `calamares-settings-ubuntu`.
  1. Update the default branch for rSEED both on Phabricator and upstream in Launchpad.
  1. Make sure `repo-list` is up-to-date and run `setup-phab` in this repo. The production values can be found in the internal setup document.
  1. Someone with access to GitHub should update the default branches for the mirrored repositories.
